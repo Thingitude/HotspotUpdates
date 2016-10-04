@@ -1,10 +1,10 @@
-with open ("/home/pi/HotspotUpdates/new/Version", "r") as myfile:
-  data=myfile.read() 
+with open ("/home/pi/HotspotUpdates/new/Version", "r") as newFile:
+  newVer=newFile.read() 
 
-with open ("/home/pi/HotspotUpdates/current/Version", "r") as myoldfile:
-  current=myoldfile.read()
+with open ("/home/pi/Hotspot/Version", "r") as curFile:
+  curVer=curFile.read()
 
-if current == data:
+if curVer == newVer:
   print 1
 else:
   print 2

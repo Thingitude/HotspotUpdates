@@ -3,8 +3,6 @@
 echo "Checking for updates"
 sudo rm -r /home/pi/HotspotUpdates/new
 
-sudo chmod -r 777 /home/pi/HotspotUpdates/new
-
 #turn the wifi back on
 sudo airmon-ng stop mon0
 sudo ifconfig wlan0 down
@@ -13,7 +11,7 @@ sudo ifconfig wlan0 up
 
 sleep 60
 
-#download reprositry from github
+#download Hotspot repository from github
 
 git clone https://github.com/Thingitude/Hotspot /home/pi/HotspotUpdates/new
 
@@ -23,9 +21,12 @@ echo "And the answer is $version"
 if [ $version -eq 1 ]; then
   echo script ends here
 else
+  echo Updating...
   sudo rm -r /home/pi/HotspotUpdates/old
-  sudo cp -r /home/pi/HotspotUpdates/current /home/pi/HotspotUpdates/old
-  sudo rm -r /home/pi/HotspotUpdates/current
-  sudo cp -r /home/pi/HotspotUpdates/new /home/pi/HotspotUpdates/current
+  sudo mv /home/pi/Hotspot /home/pi/HotspotUpdates/old
+  sudo cp -r /home/pi/HotspotUpdates/new /home/pi/Hotspot
+  sudo chown -R pi:pi /home/pi/Hotspot
+  echo Update completed. Rebooting...
+  sleep 10
   sudo reboot
 fi
