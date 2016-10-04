@@ -19,7 +19,7 @@ version=`sudo python /home/pi/HotspotUpdates/checkForUpdate.py`
 echo "And the answer is $version"
 
 if [ $version -eq 1 ]; then
-  echo script ends here
+  echo No update received. Rebooting...
 else
   echo Updating...
   sudo rm -r /home/pi/HotspotUpdates/old
@@ -27,6 +27,6 @@ else
   sudo cp -r /home/pi/HotspotUpdates/new /home/pi/Hotspot
   sudo chown -R pi:pi /home/pi/Hotspot
   echo Update completed. Rebooting...
-  sleep 10
-  sudo reboot
 fi
+
+sudo reboot
